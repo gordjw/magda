@@ -233,14 +233,14 @@ class DistributionRow extends Component {
                                     window.dataLayer.push({
                                         "event": "resource_download",
                                         "license": {distribution.license &&
-                                    (typeof distribution.license === "string"
-                                        ? distribution.license
-                                        : distribution.license.name
-                                            ? distribution.license.name
-                                            : "")},
+                                            (typeof distribution.license === "string"
+                                                ? distribution.license
+                                                : distribution.license.name
+                                                    ? distribution.license.name
+                                                    : "")},
                                         "identifier": distribution.downloadURL,
                                         "title": distribution.title,
-                                        "format": distribution.format                                     
+                                        "format": distribution.format
                                     });
                                 }
                             }}
