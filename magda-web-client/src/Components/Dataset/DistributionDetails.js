@@ -28,10 +28,9 @@ class DistributionDetails extends Component {
                             distribution.downloadURL
                         );
                         if (resource_url) {
-                            gapi.event({
-                                category: "Resource",
-                                action: "Download",
-                                label: resource_url
+                            window.dataLayer.push({
+                                "event": "resource_download",
+                                "identifier": resource_url
                             });
                         }
                     }}
