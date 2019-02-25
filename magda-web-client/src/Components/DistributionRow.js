@@ -229,31 +229,18 @@ class DistributionRow extends Component {
                             href={distribution.downloadURL}
                             onClick={() => {
                                 // google analytics download tracking
-                                const resource_url = encodeURIComponent(
-                                    distribution.downloadURL
-                                );
-                                if (resource_url) {
-                                    // legacy support
-                                    gapi.event({
-                                        category: "Resource",
-                                        action: "Download",
-                                        label: resource_url
-                                    });
-                                    // new events
-                                    gapi.event({
-                                        category: "Download by Dataset",
-                                        action: dataset.title,
-                                        label: resource_url
-                                    });
-                                    gapi.event({
-                                        category: "Download by Source",
-                                        action: dataset.source,
-                                        label: resource_url
-                                    });
-                                    gapi.event({
-                                        category: "Download by Publisher",
-                                        action: dataset.publisher.name,
-                                        label: resource_url
+                                if (distribution.title) {
+                                    window.dataLayer.push({
+                                        "event": "resource_download",
+                                        "license": {distribution.license &&
+                                    (typeof distribution.license === "string"
+                                        ? distribution.license
+                                        : distribution.license.name
+                                            ? distribution.license.name
+                                            : "")},
+                                        "identifier": distribution.downloadURL,
+                                        "title": distribution.title,
+                                        "format": distribution.format                                     
                                     });
                                 }
                             }}
