@@ -29,8 +29,16 @@ class DistributionDetails extends Component {
                         );
                         if (resource_url) {
                             window.dataLayer.push({
-                                "event": "resource_download",
-                                "identifier": resource_url
+                                 "event": "resource_download",
+                                 "license": {distribution.license &&
+                                    (typeof distribution.license === "string"
+                                        ? distribution.license
+                                        : distribution.license.name
+                                            ? distribution.license.name
+                                            : "")},
+                                 "identifier": distribution.downloadURL,
+                                 "title": distribution.title,
+                                 "format": distribution.format
                             });
                         }
                     }}
